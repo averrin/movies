@@ -1,0 +1,36 @@
+<div *ngIf="user.loggedIn()">
+  <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+    <form (ngSubmit)="sendMovie()">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="imdb-form">
+        <input [(ngModel)]="model.imdb" ngControl="imdb" #imdb="ngForm" class="mdl-textfield__input" type="text" id="imdb" name="imdb" (ngModel)="movie">
+        <label class="mdl-textfield__label" for="imdb">IMDB ссылка...</label>
+      </div>
+      <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+        Добавить
+      </button>
+    </form>
+  </section>
+  <section *ngFor="#movie of movies" class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+    <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
+      <img src="{{movie.Poster}}" alt="{{movie.Title}}">
+    </header>
+    <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+      <div class="mdl-card__supporting-text">
+        <h4>{{movie.Title}}<br>
+        <small>{{movie.Genre}}</small>
+        </h4>
+        {{movie.Plot}}
+      </div>
+      <div class="mdl-card__actions">
+        <!-- <a href="#" class="mdl-button">Read our features</a> -->
+        Рейтинг: {{movie.imdbRating}} ({{movie.Metascore}}) | Продолжительность: {{movie.Runtime}}
+      </div>
+    </div>
+  </section>
+</div>
+
+<div *ngIf="!user.loggedIn()">
+  <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+    Не-не-не, сначала&nbsp;<a (click)="user.login()" href="#">залогинься</a>.
+  </section>
+</div>
