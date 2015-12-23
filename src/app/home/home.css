@@ -2,6 +2,9 @@
   width: 50px;
   border-radius: 25px;
 }
+.avatar--small {
+  width: 36px;
+}
 .section--center {
   max-width: 820px;
   padding: 20px;
@@ -235,8 +238,8 @@ h4 {
   margin: 0 0 6px;
 }
 .mdl-card__supporting-text {
-  padding-top: 20px;
+  margin-top: 20px !important;
 }
 section {
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 }
