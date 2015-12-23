@@ -8,7 +8,6 @@ import {FORM_PROVIDERS} from 'angular2/common';
 import {AuthHttp, tokenNotExpired, JwtHelper} from 'angular2-jwt';
 
 import {User} from './providers/user';
-import {XLarge} from './directives/x-large';
 import {Home} from './home/home';
 import {UserComponent} from './components/user';
 

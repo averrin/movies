@@ -18,7 +18,7 @@ class MovieForm {
   directives: [ ...FORM_DIRECTIVES ],
   providers: [ User ],
   pipes: [],
-  styles: [ require('./home.css') ],
+  styles: [ require('./home.css'), require('./animate.css') ],
   template: require('./home.html')
 })
 export class Home {
@@ -27,6 +27,7 @@ export class Home {
   model = new MovieForm('');
   movies = [];
   constructor(public user: User, public http: Http, public authHttp: AuthHttp) {
+    this.movies = [];
     if (user.loggedIn()) {
       this.authHttp.get('http://api/movies')
         .subscribe(
@@ -43,14 +44,26 @@ export class Home {
     this.authHttp.post('http://api/movies', JSON.stringify(this.model))
       .subscribe(
         data => {
-          console.log(data.json());
           this.model.imdb = '';
-          this.movies.unshift(data.json());
+          let d = data.json();
+          d.author = this.user.profile;
+          console.log(d);
+          this.movies.unshift(d);
         },
         err => console.log(err),
         () => console.log('Complete')
       );
     console.log(this.model);
   }
-  get diagnostic() { return JSON.stringify(this.model); }
+  delMovie(movie) {
+    this.authHttp.delete(`http://api/movies/${movie.imdbID}`)
+        .subscribe(
+          data => {
+            this.movies.splice(this.movies.indexOf(movie), 1);
+          },
+          err => console.log(err),
+          () => console.log('Complete')
+        );
+    console.log(movie);
+  }
 }

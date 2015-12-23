@@ -10,7 +10,7 @@
       </button>
     </form>
   </section>
-  <section *ngFor="#movie of movies" class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+  <section *ngFor="#movie of movies" class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp animated fadeIn">
     <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
       <img src="{{movie.Poster}}" alt="{{movie.Title}}">
     </header>
@@ -24,6 +24,7 @@
       <div class="mdl-card__actions">
         <!-- <a href="#" class="mdl-button">Read our features</a> -->
         Рейтинг: {{movie.imdbRating}} ({{movie.Metascore}}) | Продолжительность: {{movie.Runtime}}
+        <div *ngIf="movie.authorID == user.profile.user_id"><a href="#" (click)="delMovie(movie)">Удалить</a></div>
       </div>
     </div>
   </section>
