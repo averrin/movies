@@ -28,16 +28,22 @@ export class Home {
   movies = [];
   constructor(public user: User, public http: Http, public authHttp: AuthHttp) {
     this.movies = [];
+    user.logged.subscribe((event) => {
+      this.fetchList();
+    });
     if (user.loggedIn()) {
-      this.authHttp.get('http://api/movies')
-        .subscribe(
-          data => {
-            this.movies = data.json();
-          },
-          err => console.log(err),
-          () => console.log('Complete')
-        );
+      this.fetchList();
     }
+  }
+  fetchList() {
+    this.authHttp.get('http://api/movies')
+      .subscribe(
+        data => {
+          this.movies = data.json();
+        },
+        err => console.log(err),
+        () => console.log('Complete')
+      );
   }
   sendMovie() {
     this.submitted = true;
