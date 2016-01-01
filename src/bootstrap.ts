@@ -9,7 +9,7 @@ import {ELEMENT_PROBE_PROVIDERS} from 'angular2/platform/common_dom';
 import {provide} from 'angular2/core';
 import {AuthHttp} from 'angular2-jwt';
 // include for production builds
-// import {enableProdMode} from 'angular2/core';
+import {enableProdMode} from 'angular2/core';
 
 /*
  * App Component
@@ -21,7 +21,9 @@ import {App} from './app/app';
  * Bootstrap our Angular app with a top level component `App` and inject
  * our Services and Providers into Angular's dependency injection
  */
-// enableProdMode() // include for production builds
+if (location.hostname == 'movies.averr.in') {
+  enableProdMode() // include for production builds
+}
 function main() {
   return bootstrap(App, [
     // These are dependencies of our App

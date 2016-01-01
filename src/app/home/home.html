@@ -35,7 +35,11 @@
                   <input type="radio" id="{{movie.imdbID}}-option-4" class="mdl-radio__button" name="{{movie.imdbID}}-options"
                     value="2" checked="{{movie.rate === 2 ? 'checked' : null}}"
                     (click)="rateMovie(movie, 2)">
-                  <span class="mdl-radio__label">Очень хочу!</span>
+                  <span class="mdl-radio__label">Очень хочу!
+                    <rate *ngFor="#rate of movie.rates">
+                      <img *ngIf="rate.rate == 2" src="{{rate.authorAvatar}}" alt="" title="{{rate.authorName}}" class="avatar avatar--micro">
+                    </rate>
+                  </span>
                 </label>
               </li>
               <li>
@@ -44,7 +48,9 @@
                     value="1" checked="{{movie.rate === 1 ? 'checked' : null}}"
                     (click)="rateMovie(movie, 1)">
                   <span class="mdl-radio__label">Интересно
-                    <img src="https://lh4.googleusercontent.com/-3vtL50tgZ9s/AAAAAAAAAAI/AAAAAAAAZkY/-GAezN7LV8g/s46-c-k-no/photo.jpg" alt="" title="{{movie.author.name}}" class="avatar avatar--micro">
+                    <rate *ngFor="#rate of movie.rates">
+                      <img *ngIf="rate.rate == 1" src="{{rate.authorAvatar}}" alt="" title="{{rate.authorName}}" class="avatar avatar--micro">
+                    </rate>
                   </span>
                 </label>
               </li>
@@ -61,7 +67,11 @@
                   <input type="radio" id="{{movie.imdbID}}-option-1" class="mdl-radio__button" name="{{movie.imdbID}}-options"
                     value="-1" checked="{{movie.rate === -1 ? 'checked' : null}}"
                     (click)="rateMovie(movie, -1)">
-                  <span class="mdl-radio__label">Неееее....</span>
+                  <span class="mdl-radio__label">Неееее....
+                    <rate *ngFor="#rate of movie.rates">
+                      <img *ngIf="rate.rate == -1" src="{{rate.authorAvatar}}" alt="" title="{{rate.authorName}}" class="avatar avatar--micro">
+                    </rate>
+                  </span>
                 </label>
               </li>
               <li>
@@ -69,7 +79,11 @@
                   <input type="radio" id="{{movie.imdbID}}-option-0" class="mdl-radio__button" name="{{movie.imdbID}}-options"
                     value="-2" checked="{{movie.rate === -2 ? 'checked' : null}}"
                     (click)="rateMovie(movie, -2)">
-                  <span class="mdl-radio__label">Лабиринт</span>
+                  <span class="mdl-radio__label">Лабиринт
+                    <rate *ngFor="#rate of movie.rates">
+                      <img *ngIf="rate.rate == -2" src="{{rate.authorAvatar}}" alt="" title="{{rate.authorName}}" class="avatar avatar--micro">
+                    </rate>
+                  </span>
                 </label>
               </li>
             </ul>
@@ -79,7 +93,9 @@
               <span class="mdl-checkbox__label">
                 Смотрел
                 <span *ngIf="user.gender == 'female'">a</span>
-                <img src="https://lh4.googleusercontent.com/-3vtL50tgZ9s/AAAAAAAAAAI/AAAAAAAAZkY/-GAezN7LV8g/s46-c-k-no/photo.jpg" alt="" title="{{movie.author.name}}" class="avatar avatar--micro">
+                  <rate *ngFor="#rate of movie.rates">
+                    <img *ngIf="rate.seen" src="{{rate.authorAvatar}}" alt="" title="{{rate.authorName}}" class="avatar avatar--micro">
+                  </rate>
               </span>
             </label>
           </div>
