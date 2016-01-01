@@ -36,7 +36,7 @@ export class Home {
     }
   }
   fetchList() {
-    this.authHttp.get('http://api.averr.in/movies')
+    this.authHttp.get('https://api.averr.in/movies')
       .subscribe(
         data => {
           this.movies = data.json();
@@ -47,7 +47,7 @@ export class Home {
   }
   sendMovie() {
     this.submitted = true;
-    this.authHttp.post('http://api.averr.in/movies', JSON.stringify(this.model))
+    this.authHttp.post('https://api.averr.in/movies', JSON.stringify(this.model))
       .subscribe(
         data => {
           this.model.imdb = '';
@@ -62,7 +62,7 @@ export class Home {
     console.log(this.model);
   }
   delMovie(movie) {
-    this.authHttp.delete(`http://api.averr.in/movies/${movie.imdbID}`)
+    this.authHttp.delete(`https://api.averr.in/movies/${movie.imdbID}`)
         .subscribe(
           data => {
             this.movies.splice(this.movies.indexOf(movie), 1);
