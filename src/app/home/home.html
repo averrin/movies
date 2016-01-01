@@ -15,7 +15,7 @@
   </section>
   <section *ngFor="#movie of movies" class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp animated fadeIn">
     <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color-text--white">
-      <img src="{{movie.Poster}}" alt="{{movie.Title}}">
+      <img src="{{movie.Poster != 'N/A' ? movie.Poster : 'http://www.fliks.com.au/assets/images/placeholders/poster-placeholder.jpg'}}" alt="{{movie.Title}}">
     </header>
     <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
       <div class="mdl-card__supporting-text">
@@ -56,7 +56,6 @@
             <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" [attr.for]="movie.imdbID + '-seen'">
               <input type="checkbox" id="{{movie.imdbID}}-seen" class="mdl-checkbox__input">
               <span class="mdl-checkbox__label">
-                <!-- <i class="material-icons">visibility</i>  -->
                 Смотрел<span *ngIf="user.gender == 'female'">a</span>
                 <img src="https://lh4.googleusercontent.com/-3vtL50tgZ9s/AAAAAAAAAAI/AAAAAAAAZkY/-GAezN7LV8g/s46-c-k-no/photo.jpg" alt="" title="{{movie.author.name}}" class="avatar avatar--micro">
               </span>
@@ -65,7 +64,6 @@
         </div>
       </div>
       <div class="mdl-card__actions">
-        <!-- <a href="#" class="mdl-button">Read our features</a> -->
         Рейтинг: {{movie.imdbRating}} ({{movie.Metascore}}) | Продолжительность: {{movie.Runtime}}
       </div>
     </div>
