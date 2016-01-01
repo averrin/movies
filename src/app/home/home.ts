@@ -63,6 +63,28 @@ export class Home {
       );
     console.log(this.model);
   }
+
+  toggleSeen(movie) {
+    movie.seen = !movie.seen;
+    this.sendRate(movie);
+  }
+
+  rateMovie(movie, rate) {
+    movie.rate = rate;
+    this.sendRate(movie);
+  }
+
+  sendRate(movie) {
+    this.authHttp.post(`${backend}/movies/${movie.imdbID}`, JSON.stringify({rate: movie.rate, seen: movie.seen}))
+        .subscribe(
+          data => {
+            console.log('Complete');
+          },
+          err => console.log(err),
+          () => console.log('Complete')
+        );
+  }
+
   delMovie(movie) {
     this.authHttp.delete(`${backend}/movies/${movie.imdbID}`)
         .subscribe(
@@ -72,6 +94,5 @@ export class Home {
           err => console.log(err),
           () => console.log('Complete')
         );
-    console.log(movie);
   }
 }

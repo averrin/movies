@@ -20,8 +20,9 @@
     <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
       <div class="mdl-card__supporting-text">
         <img style="float:right" src="{{movie.author.picture}}" alt="{{movie.author.name}}" title="{{movie.author.name}}" class="avatar avatar--small">
-        <h4><a href="http://imdb.com/title/{{movie.imdbID}}" target="_blank">{{movie.Title}}</a><br>
-        <small>{{movie.Genre}}</small>
+        <h4><a href="http://imdb.com/title/{{movie.imdbID}}" target="_blank">{{movie.Title}}</a>
+          <br>
+          <small>{{movie.Genre}}</small>
         </h4>
         <div class="mdl-grid">
           <div class="mdl-cell mdl-cell--8-col mdl-cell--12-col-phone">
@@ -29,34 +30,55 @@
           </div>
           <div class="mdl-cell mdl-cell--4-col" style="padding-left: 8px;">
             <ul style="list-style: none; padding: 0; margin-top: 0;">
-              <li><label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" [attr.for]="movie.imdbID + '-option-4'">
-                <input type="radio" id="{{movie.imdbID}}-option-4" class="mdl-radio__button" name="{{movie.imdbID}}-options" value="4">
-                <span class="mdl-radio__label">Очень хочу!</span>
-              </label></li>
-              <li><label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" [attr.for]="movie.imdbID + '-option-3'">
-                <input type="radio" id="{{movie.imdbID}}-option-3" class="mdl-radio__button" name="{{movie.imdbID}}-options" value="3">
-                <span class="mdl-radio__label">Интересно
-                  <img src="https://lh4.googleusercontent.com/-3vtL50tgZ9s/AAAAAAAAAAI/AAAAAAAAZkY/-GAezN7LV8g/s46-c-k-no/photo.jpg" alt="" title="{{movie.author.name}}" class="avatar avatar--micro">
-                </span>
-              </label></li>
-              <li><label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" [attr.for]="movie.imdbID + '-option-2'">
-                <input type="radio" id="{{movie.imdbID}}-option-2" class="mdl-radio__button" name="{{movie.imdbID}}-options" value="2" checked>
-                <span class="mdl-radio__label">Илья</span>
-              </label></li>
-              <li><label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" [attr.for]="movie.imdbID + '-option-1'">
-                <input type="radio" id="{{movie.imdbID}}-option-1" class="mdl-radio__button" name="{{movie.imdbID}}-options" value="1">
-                <span class="mdl-radio__label">Неееее....</span>
-              </label></li>
-              <li><label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" [attr.for]="movie.imdbID + '-option-0'">
-                <input type="radio" id="{{movie.imdbID}}-option-0" class="mdl-radio__button" name="{{movie.imdbID}}-options" value="0">
-                <span class="mdl-radio__label">Лабиринт</span>
-              </label></li>
+              <li>
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" [attr.for]="movie.imdbID + '-option-4'">
+                  <input type="radio" id="{{movie.imdbID}}-option-4" class="mdl-radio__button" name="{{movie.imdbID}}-options"
+                    value="2" checked="{{movie.rate === 2 ? 'checked' : null}}"
+                    (click)="rateMovie(movie, 2)">
+                  <span class="mdl-radio__label">Очень хочу!</span>
+                </label>
+              </li>
+              <li>
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" [attr.for]="movie.imdbID + '-option-3'">
+                  <input type="radio" id="{{movie.imdbID}}-option-3" class="mdl-radio__button" name="{{movie.imdbID}}-options"
+                    value="1" checked="{{movie.rate === 1 ? 'checked' : null}}"
+                    (click)="rateMovie(movie, 1)">
+                  <span class="mdl-radio__label">Интересно
+                    <img src="https://lh4.googleusercontent.com/-3vtL50tgZ9s/AAAAAAAAAAI/AAAAAAAAZkY/-GAezN7LV8g/s46-c-k-no/photo.jpg" alt="" title="{{movie.author.name}}" class="avatar avatar--micro">
+                  </span>
+                </label>
+              </li>
+              <li>
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" [attr.for]="movie.imdbID + '-option-2'">
+                  <input type="radio" id="{{movie.imdbID}}-option-2" class="mdl-radio__button" name="{{movie.imdbID}}-options"
+                    value="0" checked="{{movie.rate === 0 ? 'checked' : null}}"
+                    (click)="rateMovie(movie, 0)">
+                  <span class="mdl-radio__label">Илья</span>
+                </label>
+              </li>
+              <li>
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" [attr.for]="movie.imdbID + '-option-1'">
+                  <input type="radio" id="{{movie.imdbID}}-option-1" class="mdl-radio__button" name="{{movie.imdbID}}-options"
+                    value="-1" checked="{{movie.rate === -1 ? 'checked' : null}}"
+                    (click)="rateMovie(movie, -1)">
+                  <span class="mdl-radio__label">Неееее....</span>
+                </label>
+              </li>
+              <li>
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" [attr.for]="movie.imdbID + '-option-0'">
+                  <input type="radio" id="{{movie.imdbID}}-option-0" class="mdl-radio__button" name="{{movie.imdbID}}-options"
+                    value="-2" checked="{{movie.rate === -2 ? 'checked' : null}}"
+                    (click)="rateMovie(movie, -2)">
+                  <span class="mdl-radio__label">Лабиринт</span>
+                </label>
+              </li>
             </ul>
             <hr>
             <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" [attr.for]="movie.imdbID + '-seen'">
-              <input type="checkbox" id="{{movie.imdbID}}-seen" class="mdl-checkbox__input">
+              <input type="checkbox" id="{{movie.imdbID}}-seen" class="mdl-checkbox__input" checked="{{movie.seen ? 'checked' : null}}" (click)="toggleSeen(movie)">
               <span class="mdl-checkbox__label">
-                Смотрел<span *ngIf="user.gender == 'female'">a</span>
+                Смотрел
+                <span *ngIf="user.gender == 'female'">a</span>
                 <img src="https://lh4.googleusercontent.com/-3vtL50tgZ9s/AAAAAAAAAAI/AAAAAAAAZkY/-GAezN7LV8g/s46-c-k-no/photo.jpg" alt="" title="{{movie.author.name}}" class="avatar avatar--micro">
               </span>
             </label>
@@ -68,8 +90,10 @@
       </div>
     </div>
     <button (click)="delMovie(movie)" *ngIf="movie.authorID == user.profile.user_id" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn1">
-              <i class="material-icons">clear</i>
-      <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span>
+      <i class="material-icons">clear</i>
+      <span class="mdl-button__ripple-container">
+        <span class="mdl-ripple"></span>
+      </span>
     </button>
   </section>
 </div>
