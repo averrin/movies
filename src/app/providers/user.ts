@@ -46,24 +46,6 @@ export class User {
     return tokenNotExpired();
   }
 
-  getThing() {
-    this.http.get('http://api/ping')
-      .subscribe(
-        data => console.log(data.json()),
-        err => console.log(err),
-        () => console.log('Complete')
-      );
-  }
-
-  getSecretThing() {
-    this.authHttp.get('http://api/secured/ping')
-      .subscribe(
-        data => console.log(data.json()),
-        err => console.log(err),
-        () => console.log('Complete')
-      );
-  }
-
   tokenSubscription() {
     this.authHttp.tokenStream.subscribe(
         data => console.log(data),
