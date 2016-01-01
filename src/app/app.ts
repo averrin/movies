@@ -51,5 +51,6 @@ declare var Auth0Lock;
 export class App {
 
   constructor(public http: Http, public authHttp: AuthHttp, public user: User) {
+    console.log("App");
   }
 }
