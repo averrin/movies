@@ -6,7 +6,7 @@ import {AuthHttp, tokenNotExpired, JwtHelper} from 'angular2-jwt';
 
 import {User} from '../providers/user';
 
-var backend = location.hostname == 'movies' ? 'http://api.averr.in' : 'https://api.averr.in';
+var backend = location.hostname === 'movies' ? 'http://api.averr.in' : 'https://api.averr.in';
 
 
 class MovieForm {
@@ -42,6 +42,8 @@ export class Home {
       .subscribe(
         data => {
           this.movies = data.json();
+          var f = <HTMLElement>document.querySelector('main');
+          f.focus();
         },
         err => console.log(err),
         () => console.log('Complete')
@@ -75,7 +77,8 @@ export class Home {
   }
 
   sendRate(movie) {
-    this.authHttp.post(`${backend}/movies/${movie.imdbID}`, JSON.stringify({rate: movie.rate, seen: movie.seen}))
+    this.authHttp.post(`${backend}/movies/${movie.imdbID}`,
+      JSON.stringify({rate: movie.rate, seen: movie.seen}))
         .subscribe(
           data => {
             console.log('Complete');

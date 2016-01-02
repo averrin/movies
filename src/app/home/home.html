@@ -105,7 +105,7 @@
         Рейтинг: {{movie.imdbRating}} ({{movie.Metascore}}) | Продолжительность: {{movie.Runtime}}
       </div>
     </div>
-    <button (click)="delMovie(movie)" *ngIf="movie.authorID == user.profile.user_id" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn1">
+    <button (click)="delMovie(movie)" *ngIf="movie.authorID == user.profile.user_id || user.profile.user_metadata.admin" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn1">
       <i class="material-icons">clear</i>
       <span class="mdl-button__ripple-container">
         <span class="mdl-ripple"></span>
