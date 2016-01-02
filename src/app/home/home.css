@@ -262,3 +262,11 @@ section {
 label.mdl-radio {
   width: 100% !important;
 }
+
+.plot {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+}
