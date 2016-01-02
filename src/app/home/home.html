@@ -22,7 +22,7 @@
         <img style="float:right" src="{{movie.author.picture}}" alt="{{movie.author.name}}" title="{{movie.author.name}}" class="avatar avatar--small">
         <h4><a href="http://imdb.com/title/{{movie.imdbID}}" target="_blank">{{movie.Title}}</a>
           <br>
-          <small>{{movie.Genre}}</small>
+          <small>{{movie.Genre}} | [{{movie.Rated}}], {{movie.Released}}</small>
         </h4>
         <div class="mdl-grid">
           <div class="mdl-cell mdl-cell--8-col mdl-cell--12-col-phone">
@@ -102,7 +102,7 @@
         </div>
       </div>
       <div class="mdl-card__actions">
-        Рейтинг: {{movie.imdbRating}} ({{movie.Metascore}}) | Продолжительность: {{movie.Runtime}}
+        <small>Рейтинг: {{movie.imdbRating}} ({{movie.Metascore}}) | Продолжительность: {{movie.Runtime}}</small>
       </div>
     </div>
     <button (click)="delMovie(movie)" *ngIf="movie.authorID == user.profile.user_id || user.profile.user_metadata.admin" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn1">

@@ -5,6 +5,8 @@ import {Http} from 'angular2/http';
 import {AuthHttp, tokenNotExpired, JwtHelper} from 'angular2-jwt';
 
 import {User} from '../providers/user';
+///<reference path="../../../../typings/lodash/lodash.d.ts" />
+// import * as _ from 'lodash';
 
 var backend = location.hostname === 'movies' ? 'http://api.averr.in' : 'https://api.averr.in';
 
@@ -41,9 +43,13 @@ export class Home {
     this.authHttp.get(`${backend}/movies`)
       .subscribe(
         data => {
-          this.movies = data.json();
+          // this.movies = _.sortBy(data.json(), 'index');
+          this.movies = data.json().sort((a, b) => {
+            return b.index - a.index;
+          });
           var f = <HTMLElement>document.querySelector('main');
           f.focus();
+          setTimeout(() => this.fetchList(), 60 * 1000);
         },
         err => console.log(err),
         () => console.log('Complete')

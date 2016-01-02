@@ -238,8 +238,15 @@ section.section--center .section__text:not(:last-child) {
 .mdl-menu__container {
   z-index: 99;
 }
-section header img {
-  width: 100%;
+@media only screen and (max-device-width: 480px) {
+  section header img {
+    max-height: 240px;
+  }
+}
+@media screen and (min-width: 800px) {
+  section header img {
+    width: 100%;
+  }
 }
 h4 {
   margin: 0 0 6px;

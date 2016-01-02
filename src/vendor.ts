@@ -18,3 +18,4 @@ import 'rxjs';
 import 'angular2-jwt';
 
 // Other vendors for example jQuery or Lodash
+import 'lodash';
