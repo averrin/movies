@@ -89,6 +89,7 @@ export class Home {
   }
 
   sendRate(movie) {
+    movie.voted = true;
     this.authHttp.post(`${backend}/movies/${movie.imdbID}`,
       JSON.stringify({rate: movie.rate, seen: movie.seen}))
         .subscribe(

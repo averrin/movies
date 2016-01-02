@@ -270,3 +270,11 @@ label.mdl-radio {
   -webkit-box-orient: vertical;
   display: -webkit-box;
 }
+
+.mdl-badge[data-badge]:after {
+    top: 3px;
+    right: -18px;
+    font-size: 12px;
+    width: 15px;
+    height: 15px;
+}
