@@ -7,6 +7,7 @@ import {AuthHttp, tokenNotExpired, JwtHelper} from 'angular2-jwt';
 import {User} from '../providers/user';
 
 var backend = location.hostname === 'movies' ? 'http://api.averr.in' : 'https://api.averr.in';
+declare var componentHandler: any;
 
 
 class MovieForm {
@@ -37,6 +38,10 @@ export class Home {
       this.fetchList();
     }
   }
+  ngAfterContentChecked() {
+    componentHandler.upgradeDom();
+  }
+
   fetchList() {
     this.authHttp.get(`${backend}/movies`)
       .subscribe(
@@ -45,7 +50,7 @@ export class Home {
           var d = data.json().sort((a, b) => {
             return b.index - a.index;
           });
-          if (d != this.movies) {
+          if (JSON.stringify(d) != JSON.stringify(this.movies)) {
             this.movies = d;
           }
           var f = <HTMLElement>document.querySelector('main');
