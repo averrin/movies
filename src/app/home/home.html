@@ -37,6 +37,7 @@
                     value="2" checked="{{movie.rate === 2 ? 'checked' : null}}"
                     (click)="rateMovie(movie, 2)">
                   <span class="mdl-radio__label">Очень хочу!
+                    <img *ngIf="movie.rate == 2 && user.profile.user_metadata && user.profile.user_metadata.invalid" src="{{user.profile.picture}}" alt="" title="{{user.profile.name}}" class="avatar avatar--micro">
                     <rate *ngFor="#rate of movie.rates">
                       <img *ngIf="rate.rate == 2" src="{{rate.authorAvatar}}" alt="" title="{{rate.authorName}}" class="avatar avatar--micro">
                     </rate>
@@ -49,6 +50,7 @@
                     value="1" checked="{{movie.rate === 1 ? 'checked' : null}}"
                     (click)="rateMovie(movie, 1)">
                   <span class="mdl-radio__label">Интересно
+                    <img *ngIf="movie.rate == 1 && user.profile.user_metadata && user.profile.user_metadata.invalid" src="{{user.profile.picture}}" alt="" title="{{user.profile.name}}" class="avatar avatar--micro">
                     <rate *ngFor="#rate of movie.rates">
                       <img *ngIf="rate.rate == 1" src="{{rate.authorAvatar}}" alt="" title="{{rate.authorName}}" class="avatar avatar--micro">
                     </rate>
@@ -60,7 +62,9 @@
                   <input type="radio" id="{{movie.imdbID}}-option-2" class="mdl-radio__button" name="{{movie.imdbID}}-options"
                     value="0" checked="{{movie.rate === 0 ? 'checked' : null}}"
                     (click)="rateMovie(movie, 0)">
-                  <span class="mdl-radio__label">Илья</span>
+                  <span class="mdl-radio__label">Илья
+                    <img *ngIf="movie.rate == 0 && user.profile.user_metadata && user.profile.user_metadata.invalid" src="{{user.profile.picture}}" alt="" title="{{user.profile.name}}" class="avatar avatar--micro">
+                  </span>
                 </label>
               </li>
               <li>
@@ -69,6 +73,7 @@
                     value="-1" checked="{{movie.rate === -1 ? 'checked' : null}}"
                     (click)="rateMovie(movie, -1)">
                   <span class="mdl-radio__label">Неееее....
+                    <img *ngIf="movie.rate == -1 && user.profile.user_metadata && user.profile.user_metadata.invalid" src="{{user.profile.picture}}" alt="" title="{{user.profile.name}}" class="avatar avatar--micro">
                     <rate *ngFor="#rate of movie.rates">
                       <img *ngIf="rate.rate == -1" src="{{rate.authorAvatar}}" alt="" title="{{rate.authorName}}" class="avatar avatar--micro">
                     </rate>
@@ -81,6 +86,7 @@
                     value="-2" checked="{{movie.rate === -2 ? 'checked' : null}}"
                     (click)="rateMovie(movie, -2)">
                   <span class="mdl-radio__label">Лабиринт
+                    <img *ngIf="movie.rate == -2 && user.profile.user_metadata && user.profile.user_metadata.invalid" src="{{user.profile.picture}}" alt="" title="{{user.profile.name}}" class="avatar avatar--micro">
                     <rate *ngFor="#rate of movie.rates">
                       <img *ngIf="rate.rate == -2" src="{{rate.authorAvatar}}" alt="" title="{{rate.authorName}}" class="avatar avatar--micro">
                     </rate>
@@ -94,6 +100,7 @@
               <span class="mdl-checkbox__label">
                 Смотрел
                 <span *ngIf="user.gender == 'female'">a</span>
+                    <img *ngIf="movie.seen && user.profile.user_metadata && user.profile.user_metadata.invalid" src="{{user.profile.picture}}" alt="" title="{{user.profile.name}}" class="avatar avatar--micro">
                   <rate *ngFor="#rate of movie.rates">
                     <img *ngIf="rate.seen" src="{{rate.authorAvatar}}" alt="" title="{{rate.authorName}}" class="avatar avatar--micro">
                   </rate>
